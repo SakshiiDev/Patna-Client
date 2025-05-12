@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TheGurukulEdu</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+ <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    
+    <!-- CSS============================================ -->
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="assets/css/icons.min.css">
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+</head>
+
+<body>
+    <header class="header-area">
+       <!-- Scrolling Alert Message -->
+      <div style="background: linear-gradient(135deg, #1a0494, #1a0494, #1a0494); color: #fff; padding: 12px 0; text-align: center; font-weight: bold; font-size: 22px; overflow: hidden; position: relative;">
+        <div style="position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%); animation: lightReflection 3s infinite linear;"></div>
+        
+        <marquee behavior="scroll" direction="left" scrollamount="20" style="color: #f2f7f8; letter-spacing: 1.2px; text-shadow: 2px 2px 5px rgba(0,0,0,0.4); font-size: 22px; font-family: 'Poppins', sans-serif;">
+            <span style="animation: blinkEffect 1.8s infinite; font-weight: bold; color: #fc1008;">Apply Now! 🎓</span>
+            📢 We are offering up to <span style="background: rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 5px; font-size: 22px; font-weight: bold;">₹4 lakh</span> in financial assistance under Bihar Government's Student Credit Card Scheme through our admission consultancy. 
+            <span style="animation: blinkEffect 1.8s infinite; font-weight: bold; color: #fa0c04;">Apply Now! 🎓</span>
+        </marquee> 
+    </div> 
+        <div class="header-top bg-img" style="background-image:url(assets/img/icon-img/header-shape.png);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7 col-12 col-sm-8">
+                        <div class="header-contact">
+                            <ul>
+                                <li><i class="fa fa-phone"></i> +8851376609</li>
+                                <li><i class="fa fa-envelope-o"></i><a href="#">dhirajinvestor12@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom sticky-bar clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-6 col-4">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img alt="" src="assets/img/logo/logo.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-6 col-8">
+                        <div class="menu-cart-wrap">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        <li><a href="index.html"> HOME </a>
+                                          
+                                        </li>
+                                        <li><a href="about-us.html"> ABOUT  </a></li>
+                                       
+                                        
+                                        <li><a href="course.html"> COURSES / PROGRAMMES</a></li>
+                                        <li><a href="blog.html"> BLOG </a>
+                                          
+                                            
+                                        </li>
+                                        <li><a href="contact.html"> CONTACT </a></li>
+                                        <li><a href="login.html"> Admin login </a>
+                                    </ul>
+                                </nav>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-menu-area">
+                    <div class="mobile-menu">
+                        <nav id="mobile-menu-active">
+                            <ul class="menu-overflow">
+                                <li><a href="index.html">HOME</a>
+                                  
+                                </li>
+                                <li><a href="about-us.html">About</a></li>
+    
+                                <li><a href="blog.html">Blog</a>
+                                   
+                                    
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<div class="breadcrumb-area">
+    <div class="breadcrumb-top default-overlay bg-img breadcrumb-overly-2 pt-100 pb-95" style="background-image:url(assets/img/bg/breadcrumb-bg-2.jpg);">
+        <div class="container">
+            <h2>Our Courses</h2>
+            <p>Find the perfect course to enhance your skills, gain expertise, and shape your future with confidence and success.</p>
+            
+        </div>
+    </div>
+    <div class="breadcrumb-bottom">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a> <span><i class="fa fa-angle-double-right"></i>Course Grid</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<section class="course-area bg-light pt-4 pb-4">
+    <div class="container">
+      <div class="section-title text-center mb-4">
+        <h2><span>Find</span> Your Course</h2>
+      </div>
+      <div class="row mb-4 align-items-end">
+        <div class="col-md-3">
+          <label for="cityDropdown" class="form-label">Select City</label>
+          <select id="cityDropdown" class="form-select"></select>
+        </div>
+        <div class="col-md-3">
+          <label for="collegeDropdown" class="form-label">Select College</label>
+          <select id="collegeDropdown" class="form-select"></select>
+        </div>
+        <div class="col-md-3">
+          <label for="courseDropdown" class="form-label">Select Course</label>
+          <select id="courseDropdown" class="form-select"></select>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <button class="btn btn-success ms-2" onclick="filterCourses()">Search</button>
+        </div>
+      </div>
+  
+      <div class="row" id="courseList"></div>
+    </div>
+  </section>
+
+
+<!-- firebase code  -->
+
+
+
+
+<script>
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyCr8_VanuHDfUE_UOi9qcOzP0moaNvuTj4",
+        authDomain: "the-gurukul-edu.firebaseapp.com",
+        projectId: "the-gurukul-edu",
+        messagingSenderId: "122191740051",
+        appId: "1:122191740051:web:0e8cf824db63136f80e166",
+        measurementId: "G-3YZDCZ8X1X"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let courses = [];
+
+    // Fetch data from Firestore and populate dropdowns and display all courses
+    db.collection("college").get().then(snapshot => {
+        snapshot.forEach(doc => {
+            const collegeData = doc.data();
+            const city = collegeData.location || "Unknown City";
+            const collegeName = collegeData.college_name || "Unnamed College";
+
+            (collegeData.courses || []).forEach(course => {
+                const totalFee = course.fee || 0;
+                let discountedFee = course.discounted_fee || (totalFee - 10000);
+                let bookingAmount = course.booking_amount || Math.floor(discountedFee * 0.1);
+
+                // Ensure discountedFee and bookingAmount do not go below 0
+                discountedFee = Math.max(discountedFee, 0);
+                bookingAmount = Math.max(bookingAmount, 0);
+
+                courses.push({
+                    city: city,
+                    college: collegeName,
+                    course: course.course_name,
+                    fees: totalFee.toLocaleString(),
+                    discountFees: discountedFee.toLocaleString(),
+                    bookingAmount: bookingAmount.toLocaleString(),
+                    id: Date.now() + Math.random()
+                });
+            });
+        });
+
+        populateDropdowns();
+        displayCourses(courses); // Display all courses initially
+    });
+
+
+    function populateDropdowns() {
+        const cities = [...new Set(courses.map(c => c.city))];
+        const cityDropdown = document.getElementById("cityDropdown");
+        const collegeDropdown = document.getElementById("collegeDropdown");
+        const courseDropdown = document.getElementById("courseDropdown");
+
+        // Reset and disable dependent dropdowns
+        collegeDropdown.innerHTML = `<option value="">Select City First</option>`;
+        collegeDropdown.disabled = true;
+        courseDropdown.innerHTML = `<option value="">Select College First</option>`;
+        courseDropdown.disabled = true;
+
+        // Populate City dropdown
+        cityDropdown.innerHTML = `<option value="">Select City</option>`;
+        cities.forEach(city => {
+            cityDropdown.innerHTML += `<option value="${city}">${city}</option>`;
+        });
+
+        // Add event listeners
+        cityDropdown.addEventListener("change", updateCollegeDropdown);
+        collegeDropdown.addEventListener("change", updateCourseDropdown);
+    }
+
+    function updateCollegeDropdown() {
+        const selectedCity = document.getElementById("cityDropdown").value;
+        const collegeDropdown = document.getElementById("collegeDropdown");
+        const courseDropdown = document.getElementById("courseDropdown");
+
+        if (!selectedCity) {
+            collegeDropdown.innerHTML = `<option value="">Select City First</option>`;
+            collegeDropdown.disabled = true;
+            courseDropdown.innerHTML = `<option value="">Select College First</option>`;
+            courseDropdown.disabled = true;
+            return;
+        }
+
+        const colleges = [...new Set(courses.filter(c => c.city === selectedCity).map(c => c.college))];
+        collegeDropdown.innerHTML = `<option value="">Select College</option>`;
+        colleges.forEach(college => {
+            collegeDropdown.innerHTML += `<option value="${college}">${college}</option>`;
+        });
+        collegeDropdown.disabled = false;
+
+        // Reset and disable course dropdown
+        courseDropdown.innerHTML = `<option value="">Select College First</option>`;
+        courseDropdown.disabled = true;
+    }
+
+    function updateCourseDropdown() {
+        const selectedCity = document.getElementById("cityDropdown").value;
+        const selectedCollege = document.getElementById("collegeDropdown").value;
+        const courseDropdown = document.getElementById("courseDropdown");
+
+        if (!selectedCollege) {
+            courseDropdown.innerHTML = `<option value="">Select College First</option>`;
+            courseDropdown.disabled = true;
+            return;
+        }
+
+        const availableCourses = courses
+            .filter(c => c.city === selectedCity && c.college === selectedCollege)
+            .map(c => c.course);
+        const uniqueCourses = [...new Set(availableCourses)];
+
+        courseDropdown.innerHTML = `<option value="">Select Course</option>`;
+        uniqueCourses.forEach(course => {
+            courseDropdown.innerHTML += `<option value="${course}">${course}</option>`;
+        });
+        courseDropdown.disabled = false;
+    }
+
+    function filterCourses() {
+        const selectedCity = document.getElementById("cityDropdown").value;
+        const selectedCollege = document.getElementById("collegeDropdown").value;
+        const selectedCourse = document.getElementById("courseDropdown").value;
+
+        const filtered = courses.filter(course =>
+            (selectedCity === "" || course.city === selectedCity) &&
+            (selectedCollege === "" || course.college === selectedCollege) &&
+            (selectedCourse === "" || course.course === selectedCourse)
+        );
+
+        displayCourses(filtered);
+    }
+
+    function displayCourses(filteredCourses) {
+        const courseList = document.getElementById("courseList");
+        courseList.innerHTML = "";
+
+        if (filteredCourses.length === 0) {
+            courseList.innerHTML = "<p>No courses found. Please refine your search.</p>";
+            return;
+        }
+
+        filteredCourses.forEach(course => {
+            const courseItem = document.createElement("div");
+            courseItem.classList.add("col-md-4", "mb-4");
+            courseItem.innerHTML = `
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>${course.college}</strong></h5>
+                        <p class="card-text"><strong>City:</strong> ${course.city}</p>
+                        <p class="card-text"><strong>Course:</strong> ${course.course}</p>
+                        <p class="card-text"><strong>Total Fees:</strong> ₹${course.fees}</p>
+                        <p class="card-text"><strong>Discounted Fees:</strong> ₹${course.discountFees}</p>
+                        <p class="card-text"><strong>Booking Amount:</strong> ₹${course.bookingAmount}</p>
+                        <button class="btn btn-success" onclick="alert('Booking for ${course.course} at ${course.college}')">Book Seat</button>
+                    </div>
+                </div>
+            `;
+            courseList.appendChild(courseItem);
+        });
+    }
+</script>
+
+
+
+ <!-- firebase code end  -->
+
+
+
+<div class="brand-logo-area pt-50 pb-50">
+    <div class="container">
+        <div class="brand-logo-active owl-carousel">
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/1.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/2.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/3.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/4.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/5.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/6.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/7.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/8.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/9.jpg" alt=""></a>
+            </div>
+            <div class="single-brand-logo">
+                <a href="#"><img src="assets/img/brand-logo/10.jpg" alt=""></a>
+            </div>
+          
+
+        </div>
+    </div>
+</div>
+<!-- ==================================== -->
+<footer class="footer-area">
+    <div class="footer-top bg-img default-overlay pt-130 pb-80" style="background-image:url(assets/img/bg/bg-4.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-widget mb-40">
+                        <div class="footer-title">
+                            <h4>ABOUT US</h4>
+                        </div>
+                        <div class="footer-about">
+                            <p>We provide quality education, fostering innovation, leadership, and global exposure for student success.</p>
+                            <div class="f-contact-info">
+                                <div class="single-f-contact-info">
+                                    <i class="fa fa-home"></i>
+                                    <span>Bhoot nath road ,kankarbagh <br>near dominos pizza ,Patna (Bihar)<br>pincode - 800026 </span>
+                                </div>
+                                <div class="single-f-contact-info">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span><a href="#">dhirajinvestor12@gmail.com</a></span>
+                                </div>
+                                <div class="single-f-contact-info">
+                                    <i class="fa fa-phone"></i>
+                                    <span> +8851376609</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer-widget mb-40">
+                        <div class="footer-title">
+                            <h4>QUICK LINK</h4>
+                        </div>
+                        <div class="footer-list">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="course.html">Courses</a></li>
+                                <li><a href="#">Admission</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer-widget negative-mrg-30 mb-40">
+                        <div class="footer-title">
+                            <h4>COURSES</h4>
+                        </div>
+                        <div class="footer-list">
+                            <ul>
+                                <li><a href="#">PGDM & PGDM GLOBAL</a></li>
+                                <li><a href="#">PGDM SELECT & DUEL</a></li>
+                                <li><a href="#">PGDM INDIA + US & PGDM UK</a></li>
+                                <li><a href="#">MBA, MBA G & MBA++</a></li>
+                                <li><a href="#">MBA ELITE & MBA DUEL</a></li>
+                                <li><a href="#">MBA IEV & MBA GLOBAL</a></li>
+                                <li><a href="#">MBA ONLINE & MCA</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="footer-widget mb-40">
+                        <div class="footer-title">
+                            <h4>GALLERY</h4>
+                        </div>
+                        <div class="footer-gallery">
+                            <ul>
+                                <li><a href="#"><img src="assets/img/gallery/gallery-1.webp" alt=""></a></li>
+                                <li><a href="#"><img src="assets/img/gallery/gallery-2.webp" alt=""></a></li>
+                                <li><a href="#"><img src="assets/img/gallery/gallery-3.webp" alt=""></a></li>
+                                <li><a href="#"><img src="assets/img/gallery/gallery-4.webp" alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="footer-widget mb-40">
+                        <div class="footer-title">
+                            <h4>News Latter</h4>
+                        </div>
+                        <div class="subscribe-style">
+                            <p>Subscribe to our newsletter for the latest updates, insights, and special offers delivered to your inbox.</p>
+                            <div id="mc_embed_signup" class="subscribe-form">
+                                <form id="mc-embedded-subscribe-form" class="validate" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+                                    <div id="mc_embed_signup_scroll" class="mc-form">
+                                        <input class="email" type="email" required="" placeholder="Your E-mail Address" name="EMAIL" value="">
+                                        <div class="mc-news" aria-hidden="true">
+                                            <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
+                                        </div>
+                                        <div class="clear">
+                                            <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="SUBMIT">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom pt-15 pb-15">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-12">
+                    <div class="copyright">
+                        <p>
+                            Copyright ©
+                            <a href="https://www.cmtai.in/">CMT AI</a>
+
+                            . All Right Reserved.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="footer-menu-social">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#">Privecy & Policy</a></li>
+                                <li><a href="#">Terms & Conditions of Use</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-social">
+                            <ul>
+                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="youtube" href="#"><i class="fa fa-youtube-play"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- JS
+============================================-->
+<script>
+
+
+
+
+
+// Filter function based on dropdown selections
+function filterCourses() {
+    const selectedCity = document.getElementById("cityDropdown").value;
+    const selectedCollege = document.getElementById("collegeDropdown").value;
+    const selectedCourse = document.getElementById("courseDropdown").value;
+    
+    const filteredCourses = courses.filter(course => {
+        const cityMatch = selectedCity === "" || course.city === selectedCity;
+        const collegeMatch = selectedCollege === "" || course.college === selectedCollege;
+        const courseMatch = selectedCourse === "" || course.course === selectedCourse;
+        
+        return cityMatch && collegeMatch && courseMatch;
+    });
+    
+    displayCourses(filteredCourses);
+}
+
+
+
+// Function to validate email format
+function isValidEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+// Function to validate phone number (10 digits)
+function isValidPhone(phone) {
+    const phonePattern = /^\d{10}$/;
+    return phonePattern.test(phone);
+}
+
+// Function to open the booking form
+function openBookingForm(courseId) {
+    const course = courses.find(c => c.id === courseId);
+
+    const bookingForm = document.getElementById("bookingForm");
+    bookingForm.innerHTML = `
+        <h4>Book a Seat for <strong>${course.college}</strong></h4>
+        <p><strong>Course:</strong> ${course.course}</p>
+        <form id="studentForm" onsubmit="return validateAndProceed(${course.id})">
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name:</label>
+                <input type="text" class="form-control" id="name" required>
+                <div class="invalid-feedback">Please enter your full name</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">Please enter a valid email address</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number:</label>
+                <input type="tel" class="form-control" id="phone" required>
+                <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <textarea class="form-control" id="address" rows="2" required></textarea>
+                <div class="invalid-feedback">Please enter your address</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Booking Amount:</label>
+                <p class="form-control-static">₹${course.bookingAmount}</p>
+            </div>
+            
+            <button type="submit" class="btn btn-success w-100">Proceed to Payment</button>
+        </form>
+    `;
+    bookingForm.style.display = 'block';
+    
+    // Scroll to the booking form
+    bookingForm.scrollIntoView({behavior: "smooth"});
+}
+
+// Function to validate form and proceed
+function validateAndProceed(courseId) {
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const addressInput = document.getElementById("address");
+    
+    let isValid = true;
+    
+    // Validate name
+    if (!nameInput.value.trim()) {
+        nameInput.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        nameInput.classList.remove("is-invalid");
+    }
+    
+    // Validate email
+    if (!isValidEmail(emailInput.value.trim())) {
+        emailInput.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        emailInput.classList.remove("is-invalid");
+    }
+    
+    // Validate phone
+    if (!isValidPhone(phoneInput.value.trim())) {
+        phoneInput.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        phoneInput.classList.remove("is-invalid");
+    }
+    
+    // Validate address
+    if (!addressInput.value.trim()) {
+        addressInput.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        addressInput.classList.remove("is-invalid");
+    }
+    
+    if (isValid) {
+        directPayment(courseId);
+    }
+    
+    return false; // Prevent form submission
+}
+
+// Function to directly process payment
+function directPayment(courseId) {
+    const course = courses.find(c => c.id === courseId);
+    const studentName = document.getElementById("name").value;
+    const studentEmail = document.getElementById("email").value;
+    const studentPhone = document.getElementById("phone").value;
+    const studentAddress = document.getElementById("address").value;
+    
+    // Show payment processing message
+    const bookingForm = document.getElementById("bookingForm");
+    bookingForm.innerHTML = `
+        <div class="text-center">
+            <h4>Processing Payment</h4>
+            <p>Please wait while we process your payment of ₹${course.bookingAmount}...</p>
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    `;
+    
+    // Simulate payment processing
+    setTimeout(() => {
+        // After successful payment, show success message
+        bookingForm.innerHTML = `
+            <div class="alert alert-success">
+                <h4>Payment Successful!</h4>
+                <p>Your seat has been booked for <strong>${course.college}</strong>.</p>
+                <p><strong>Course:</strong> ${course.course}</p>
+                <p><strong>Total Fees:</strong> ₹${course.fees}</p>
+                <p><strong>Discounted Fees:</strong> ₹${course.discountFees}</p>
+                <p><strong>Booking Amount Paid:</strong> ₹${course.bookingAmount}</p>
+                <button class="btn btn-success mt-3" onclick="location.reload()">Continue Browsing</button>
+            </div>
+        `;
+    }, 2000); // Simulate 2 second processing time
+}
+
+// Function to simulate sending confirmation email
+function sendConfirmationEmail(course, name, email, phone, address) {
+    console.log(`
+        Sending confirmation email to: ${email}
+        Subject: Seat Confirmation for ${course.course}
+        
+        Dear ${name},
+        
+        Your seat for ${course.course} at ${course.college}, ${course.city} has been successfully booked.
+        
+        Booking Details:
+        - Course: ${course.course}
+        - College: ${course.college}
+        - City: ${course.city}
+        - Amount Paid: ₹${course.discountFees}
+        - Transaction ID: ${generateTransactionId()}
+        - Booking Date: ${new Date().toLocaleDateString()}
+        
+        Student Details:
+        - Name: ${name}
+        - Email: ${email}
+        - Phone: ${phone}
+        - Address: ${address}
+        
+        Thank you for choosing our service.
+        
+        Regards,
+        Course Booking Team
+    `);
+}
+
+// Generate a random transaction ID
+function generateTransactionId() {
+    return 'TXN' + Date.now() + Math.floor(Math.random() * 1000);
+}
+
+
+</script>
+
+<!-- jQuery JS -->
+<script src="assets/js/vendor/jquery-v2.2.4.min.js"></script>
+<!-- Popper JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Plugins JS -->
+<script src="assets/js/plugins.js"></script>
+<!-- Ajax Mail -->
+<script src="assets/js/ajax-mail.js"></script>
+<!-- Main JS -->
+<script src="assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+<!-- extra code  -->
+
+
+<!-- /    const courses = [];
+
+
+// let id = 1;
+
+// Generate dynamic courses for each college and city
+// colleges.forEach(college => {
+//     cities.forEach(city => {
+//         college.courses.forEach(courseName => {
+//             const totalFees = 200000 + Math.floor(Math.random() * 800000); // Total fees between 2-10 lakhs
+//             const discount = 100000 + Math.floor(Math.random() * 100000); // Discount between 1-2 lakhs
+//             const bookingAmount = 50000 + Math.floor(Math.random() * 20000); // Booking amount between 50,000-70,000
+//             courses.push({
+//                 id: id++,
+//                 city: city,
+//                 college: college.name,
+//                 course: courseName,
+//                 fees: `${totalFees.toLocaleString()}`,
+//                 discountFees: `${(totalFees - discount).toLocaleString()}`,
+//                 bookingAmount: `${bookingAmount.toLocaleString()}`
+//             });
+//         });
+//     });
+// });

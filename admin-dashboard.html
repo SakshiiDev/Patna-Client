@@ -1,0 +1,679 @@
+<!-- glaxdu/admin-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .header {
+        background-color: #343a40;
+        color: #fff;
+        padding: 20px 0;
+      }
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      .nav-tabs .nav-link {
+        font-weight: bold;
+      }
+      .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+      .card img {
+        height: 200px;
+        object-fit: cover;
+      }
+      .btn-primary,
+      .btn-warning,
+      .btn-danger {
+        width: 100%;
+      }
+      .form-label {
+        font-weight: bold;
+      }
+      .footer {
+        background-color: #343a40;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+      }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <header class="header text-center">
+      <div class="container">
+        <h1>Admin Dashboard</h1>
+        <p>Manage Blogs and Courses with Ease</p>
+      </div>
+    </header>
+
+    <div class="container mt-5">
+      <!-- Tabs for Blogs and Courses -->
+      <ul
+        class="nav nav-tabs justify-content-center"
+        id="adminTabs"
+        role="tablist"
+      >
+        <li class="nav-item">
+          <button
+            class="nav-link active"
+            id="blogs-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#blogs"
+            type="button"
+            role="tab"
+          >
+            <i class="fas fa-blog"></i> Blogs
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            id="courses-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#courses"
+            type="button"
+            role="tab"
+          >
+            <i class="fas fa-graduation-cap"></i> Courses
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content mt-4" id="adminTabsContent">
+        <!-- Blogs Management -->
+        <div class="tab-pane fade show active" id="blogs" role="tabpanel">
+          <h3 class="text-center mb-4">Manage Blogs</h3>
+          <form id="blogForm" class="mb-4 p-4 bg-white rounded shadow-sm">
+            <input type="hidden" id="blogId" />
+            <div class="mb-3">
+              <label for="blogTitle" class="form-label">Title</label>
+              <input
+                type="text"
+                id="blogTitle"
+                class="form-control"
+                placeholder="Enter blog title"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="blogCategory" class="form-label">Category</label>
+              <input
+                type="text"
+                id="blogCategory"
+                class="form-control"
+                placeholder="Enter blog category"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="blogDescription" class="form-label"
+                >Description</label
+              >
+              <textarea
+                id="blogDescription"
+                class="form-control"
+                rows="3"
+                placeholder="Enter blog description"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="blogImage" class="form-label">Image URL</label>
+              <input
+                type="url"
+                id="blogImage"
+                class="form-control"
+                placeholder="Enter image URL"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="blogTimestamp" class="form-label">Timestamp</label>
+              <input
+                type="datetime-local"
+                id="blogTimestamp"
+                class="form-control"
+                required
+              />
+            </div>
+            <button type="button" id="addBlogBtn" class="btn btn-primary">
+              Add Blog
+            </button>
+            <button
+              type="button"
+              id="updateBlogBtn"
+              class="btn btn-warning d-none"
+            >
+              Update Blog
+            </button>
+          </form>
+          <div id="blogList" class="row g-4"></div>
+        </div>
+
+        <!-- Courses Management -->
+        <div class="tab-pane fade" id="courses" role="tabpanel">
+          <h3 class="text-center mb-4">Manage Courses</h3>
+          <form id="courseForm" class="mb-4 p-4 bg-white rounded shadow-sm">
+            <input type="hidden" id="courseId" />
+            <div class="mb-3">
+              <label for="courseCity" class="form-label">City</label>
+              <input
+                type="text"
+                id="courseCity"
+                class="form-control"
+                placeholder="Enter city"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="courseCollege" class="form-label">College</label>
+              <input
+                type="text"
+                id="courseCollege"
+                class="form-control"
+                placeholder="Enter college name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="courseName" class="form-label">Course Name</label>
+              <input
+                type="text"
+                id="courseName"
+                class="form-control"
+                placeholder="Enter course name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="courseFee" class="form-label">Total Fees</label>
+              <input
+                type="number"
+                id="courseFee"
+                class="form-control"
+                placeholder="Enter total fees"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="discountedFee" class="form-label"
+                >Discounted Fees</label
+              >
+              <input
+                type="number"
+                id="discountedFee"
+                class="form-control"
+                placeholder="Enter discounted fees"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="bookingAmount" class="form-label"
+                >Booking Amount</label
+              >
+              <input
+                type="number"
+                id="bookingAmount"
+                class="form-control"
+                placeholder="Calculated automatically or editable by admin"
+              />
+            </div>
+            <button type="button" id="addCourseBtn" class="btn btn-primary">
+              Add Course
+            </button>
+            <button
+              type="button"
+              id="updateCourseBtn"
+              class="btn btn-warning d-none"
+            >
+              Update Course
+            </button>
+          </form>
+          <div id="courseList" class="row g-4">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">College Name</h5>
+                  <p class="card-text"><strong>City:</strong> City Name</p>
+                  <p class="card-text"><strong>Course:</strong> Course Name</p>
+                  <p class="card-text">
+                    <strong>Total Fees:</strong> ₹Total Fees
+                  </p>
+                  <p class="card-text">
+                    <strong>Discounted Fees:</strong> ₹Discounted Fees
+                  </p>
+                  <p class="card-text">
+                    <strong>Booking Amount:</strong> ₹Booking Amount
+                  </p>
+                  <button class="btn btn-warning">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 Education Consultancy. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // Firebase Config
+      const firebaseConfig = {
+        apiKey: "AIzaSyCr8_VanuHDfUE_UOi9qcOzP0moaNvuTj4",
+        authDomain: "the-gurukul-edu.firebaseapp.com",
+        projectId: "the-gurukul-edu",
+        messagingSenderId: "122191740051",
+        appId: "1:122191740051:web:0e8cf824db63136f80e166",
+        measurementId: "G-3YZDCZ8X1X",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      // Blogs Management
+      const blogForm = document.getElementById("blogForm");
+      const blogList = document.getElementById("blogList");
+      const addBlogBtn = document.getElementById("addBlogBtn");
+      const updateBlogBtn = document.getElementById("updateBlogBtn");
+
+      // Add Blog
+      addBlogBtn.addEventListener("click", () => {
+        const title = document.getElementById("blogTitle").value.trim();
+        const category = document.getElementById("blogCategory").value.trim();
+        const description = document
+          .getElementById("blogDescription")
+          .value.trim();
+        const image = document.getElementById("blogImage").value.trim();
+        const timestamp = document.getElementById("blogTimestamp").value;
+
+        if (!title || !category || !description || !image || !timestamp) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        db.collection("blogs")
+          .add({
+            title,
+            category,
+            description,
+            img: image,
+            date: new Date(timestamp),
+          })
+          .then(() => {
+            alert("Blog added successfully!");
+            blogForm.reset();
+            fetchBlogs();
+          })
+          .catch((error) => console.error("Error adding blog:", error));
+      });
+
+      // Update Blog
+      updateBlogBtn.addEventListener("click", () => {
+        const blogId = document.getElementById("blogId").value;
+        const title = document.getElementById("blogTitle").value.trim();
+        const category = document.getElementById("blogCategory").value.trim();
+        const description = document
+          .getElementById("blogDescription")
+          .value.trim();
+        const image = document.getElementById("blogImage").value.trim();
+        const timestamp = document.getElementById("blogTimestamp").value;
+
+        if (!title || !category || !description || !image || !timestamp) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        db.collection("blogs")
+          .doc(blogId)
+          .update({
+            title,
+            category,
+            description,
+            img: image,
+            date: new Date(timestamp),
+          })
+          .then(() => {
+            alert("Blog updated successfully!");
+            blogForm.reset();
+            addBlogBtn.classList.remove("d-none");
+            updateBlogBtn.classList.add("d-none");
+            fetchBlogs();
+          })
+          .catch((error) => console.error("Error updating blog:", error));
+      });
+
+      // Fetch Blogs
+      function fetchBlogs() {
+        blogList.innerHTML = "";
+        db.collection("blogs")
+          .orderBy("date", "desc")
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((doc) => {
+              const blog = doc.data();
+              const blogDate = blog.date?.toDate().toLocaleString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+
+              const blogItem = `
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <img src="${blog.img}" class="card-img-top" alt="${blog.title}">
+                <div class="card-body">
+                  <h5 class="card-title">${blog.title}</h5>
+                  <p class="card-text">${blog.description}</p>
+                  <p class="text-muted small"><i class="fa fa-calendar-o"></i> ${
+                    blogDate || "No date"
+                  }</p>
+                  <button class="btn btn-warning" onclick="editBlog('${
+                    doc.id
+                  }', '${blog.title}', '${blog.category}', '${
+                blog.description
+              }', '${blog.img}', '${blog.date.toDate()}')">Edit</button>
+                  <button class="btn btn-danger" onclick="deleteBlog('${
+                    doc.id
+                  }')">Delete</button>
+                </div>
+              </div>
+            </div>
+          `;
+              blogList.innerHTML += blogItem;
+            });
+          });
+      }
+
+      // Edit Blog
+      function editBlog(id, title, category, description, img, date) {
+        document.getElementById("blogId").value = id;
+        document.getElementById("blogTitle").value = title;
+        document.getElementById("blogCategory").value = category;
+        document.getElementById("blogDescription").value = description;
+        document.getElementById("blogImage").value = img;
+        document.getElementById("blogTimestamp").value = new Date(date)
+          .toISOString()
+          .slice(0, 16);
+        addBlogBtn.classList.add("d-none");
+        updateBlogBtn.classList.remove("d-none");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Delete Blog
+      function deleteBlog(id) {
+        if (confirm("Are you sure you want to delete this blog?")) {
+          db.collection("blogs")
+            .doc(id)
+            .delete()
+            .then(() => {
+              alert("Blog deleted successfully!");
+              fetchBlogs();
+            })
+            .catch((error) => console.error("Error deleting blog:", error));
+        }
+      }
+
+      // Load blogs on page load
+      fetchBlogs();
+
+      // Courses Management
+      const courseForm = document.getElementById("courseForm");
+      const courseList = document.getElementById("courseList");
+      const addCourseBtn = document.getElementById("addCourseBtn");
+      const updateCourseBtn = document.getElementById("updateCourseBtn");
+
+      // Automatically calculate Discounted Fee and Booking Amount
+      document
+        .getElementById("courseFee")
+        .addEventListener("input", calculateDiscountedAndBookingAmount);
+
+      function calculateDiscountedAndBookingAmount() {
+        const totalFee =
+          parseInt(document.getElementById("courseFee").value) || 0;
+        const discountedFee = totalFee - 10000;
+        document.getElementById("discountedFee").value =
+          discountedFee > 0 ? discountedFee : 0;
+
+        const bookingAmount = Math.floor(discountedFee * 0.1);
+        document.getElementById("bookingAmount").value =
+          bookingAmount > 0 ? bookingAmount : 0;
+      }
+
+      // Add Course
+      addCourseBtn.addEventListener("click", () => {
+        const city = document.getElementById("courseCity").value.trim();
+        const college = document.getElementById("courseCollege").value.trim();
+        const courseName = document.getElementById("courseName").value.trim();
+        const totalFee = parseInt(document.getElementById("courseFee").value);
+        const discountedFee = parseInt(
+          document.getElementById("discountedFee").value
+        );
+        const bookingAmount = parseInt(
+          document.getElementById("bookingAmount").value
+        );
+
+        if (
+          !city ||
+          !college ||
+          !courseName ||
+          isNaN(totalFee) ||
+          isNaN(discountedFee) ||
+          isNaN(bookingAmount)
+        ) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        // Add course data to Firestore
+        db.collection("college")
+          .add({
+            location: city,
+            college_name: college,
+            courses: [
+              {
+                course_name: courseName,
+                fee: totalFee,
+                discounted_fee: discountedFee,
+                booking_amount: bookingAmount,
+              },
+            ],
+          })
+          .then(() => {
+            alert("Course added successfully!");
+            courseForm.reset();
+            fetchCourses();
+          })
+          .catch((error) => console.error("Error adding course:", error));
+      });
+
+      // Update Course
+      updateCourseBtn.addEventListener("click", () => {
+        const courseId = document.getElementById("courseId").value;
+        const city = document.getElementById("courseCity").value.trim();
+        const college = document.getElementById("courseCollege").value.trim();
+        const courseName = document.getElementById("courseName").value.trim();
+        const totalFee = parseInt(document.getElementById("courseFee").value);
+        const discountedFee = parseInt(
+          document.getElementById("discountedFee").value
+        );
+        const bookingAmount = parseInt(
+          document.getElementById("bookingAmount").value
+        );
+
+        if (
+          !city ||
+          !college ||
+          !courseName ||
+          isNaN(totalFee) ||
+          isNaN(discountedFee) ||
+          isNaN(bookingAmount)
+        ) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        db.collection("college")
+          .doc(courseId)
+          .update({
+            location: city,
+            college_name: college,
+            courses: [
+              {
+                course_name: courseName,
+                fee: totalFee,
+                discounted_fee: discountedFee,
+                booking_amount: bookingAmount,
+              },
+            ],
+          })
+          .then(() => {
+            alert("Course updated successfully!");
+            courseForm.reset();
+            addCourseBtn.classList.remove("d-none");
+            updateCourseBtn.classList.add("d-none");
+            fetchCourses();
+          })
+          .catch((error) => console.error("Error updating course:", error));
+      });
+
+      // Fetch Courses
+      function fetchCourses() {
+        courseList.innerHTML = ""; // Clear the course list
+        db.collection("college")
+          .get()
+          .then((snapshot) => {
+            let allCoursesHTML = ""; // Initialize an empty string to store all course cards
+
+            snapshot.forEach((doc) => {
+              const college = doc.data();
+
+              // Iterate through all courses in the college
+              (college.courses || []).forEach((course) => {
+                // Use default values if any property is undefined
+                const courseName = course.course_name || "Unknown Course";
+                const totalFee = course.fee || 0;
+                const discountedFee = course.discounted_fee || 0;
+                const bookingAmount = course.booking_amount || 0;
+
+                const courseItem = `
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${college.college_name || "Unknown College"}</h5>
+                  <p class="card-text"><strong>City:</strong> ${college.location || "Unknown City"}</p>
+                  <p class="card-text"><strong>Course:</strong> ${courseName}</p>
+                  <p class="card-text"><strong>Total Fees:</strong> ₹${totalFee.toLocaleString()}</p>
+                  <p class="card-text"><strong>Discounted Fees:</strong> ₹${discountedFee.toLocaleString()}</p>
+                  <p class="card-text"><strong>Booking Amount:</strong> ₹${bookingAmount.toLocaleString()}</p>
+                  <button class="btn btn-warning" onclick="editCourse('${doc.id}', '${college.location}', '${college.college_name}', '${courseName}', '${totalFee}', '${discountedFee}', '${bookingAmount}')">Edit</button>
+                  <button class="btn btn-danger" onclick="deleteCourse('${doc.id}')">Delete</button>
+                </div>
+              </div>
+            </div>
+          `;
+                allCoursesHTML += courseItem; // Append the course card to the string
+              });
+            });
+
+            courseList.innerHTML = allCoursesHTML; // Set the final HTML to the course list
+          })
+          .catch((error) => console.error("Error fetching courses:", error));
+      }
+
+      // Edit Course
+      function editCourse(
+        id,
+        city,
+        college,
+        courseName,
+        fee,
+        discountedFee,
+        bookingAmount
+      ) {
+        document.getElementById("courseId").value = id;
+        document.getElementById("courseCity").value = city;
+        document.getElementById("courseCollege").value = college;
+        document.getElementById("courseName").value = courseName;
+        document.getElementById("courseFee").value = fee;
+        document.getElementById("discountedFee").value = discountedFee;
+        document.getElementById("bookingAmount").value = bookingAmount;
+        addCourseBtn.classList.add("d-none");
+        updateCourseBtn.classList.remove("d-none");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Delete Course
+      function deleteCourse(id) {
+        if (confirm("Are you sure you want to delete this course?")) {
+          db.collection("college")
+            .doc(id)
+            .delete()
+            .then(() => {
+              alert("Course deleted successfully!");
+              fetchCourses();
+            })
+            .catch((error) => console.error("Error deleting course:", error));
+        }
+      }
+
+      // Display Courses
+      function displayCourses(filteredCourses) {
+        const courseList = document.getElementById("courseList");
+        courseList.innerHTML = "";
+
+        if (filteredCourses.length === 0) {
+          courseList.innerHTML =
+            "<p>No courses found. Please refine your search.</p>";
+          return;
+        }
+
+        filteredCourses.forEach((course) => {
+          const courseItem = document.createElement("div");
+          courseItem.classList.add("col-md-4", "mb-4");
+          courseItem.innerHTML = `
+              <div class="card h-100">
+                  <div class="card-body">
+                      <h5 class="card-title"><strong>${course.college}</strong></h5>
+                      <p class="card-text"><strong>City:</strong> ${course.city}</p>
+                      <p class="card-text"><strong>Course:</strong> ${course.course}</p>
+                      <p class="card-text"><strong>Total Fees:</strong> ₹${course.fees}</p>
+                      <p class="card-text"><strong>Discounted Fees:</strong> ₹${course.discountFees}</p>
+                      <p class="card-text"><strong>Booking Amount:</strong> ₹${course.bookingAmount}</p>
+                      <button class="btn btn-success" onclick="alert('Booking for ${course.course} at ${course.college}')">Book Seat</button>
+                  </div>
+              </div>
+          `;
+          courseList.appendChild(courseItem);
+        });
+      }
+
+      // Load courses on page load
+      fetchCourses();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
